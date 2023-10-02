@@ -1,0 +1,65 @@
+update_quality <- function(items) {
+  if(is.na(items)) {
+    cli::cli_abort("There was no item supplied, check item().")
+  }
+
+  lapply(items,
+         function(item) {
+
+           if (item$name != "Aged Brie" && item$name != "Backstage passes to a TAFKAL80ETC concert") {
+             if (item$quality > 0) {
+               if (item$name != "Sulfuras, Hand of Ragnaros") {
+                 item$quality <- item$quality - 1
+               }
+             }
+           } else {
+             if (item$quality < 50) {
+               item$quality <- item$quality + 1
+               if (item$name == "Backstage passes to a TAFKAL80ETC concert") {
+                 if (item$sell_in < 11) {
+                   if (item$quality < 50) {
+                     item$quality = item$quality + 1
+                   }
+                 }
+                 if (item$sell_in < 6) {
+                   if (item$quality < 50) {
+                     item$quality = item$quality + 1
+                   }
+                 }
+               }
+             }
+           }
+
+           if (item$name != "Sulfuras, Hand of Ragnaros") {
+             item$sell_in <- item$sell_in - 1
+           }
+
+           if (item$sell_in < 0) {
+             if (item$name != "Aged Brie") {
+               if (item$name != "Backstage passes to a TAFKAL80ETC concert") {
+                 if (item$quality > 0) {
+                   if (item$name != "Sulfuras, Hand of Ragnaros") {
+                     item$quality <- item$quality - 1
+                   }
+                 }
+               } else {
+                 item$quality <- item$quality - item$quality
+               }
+             } else {
+               if (item$quality < 50) {
+                 item$quality <- item$quality + 1
+               }
+             }
+           }
+
+           item
+         }
+  )
+}
+
+# there are no stops/returns/skips, perhaps add one for Sulfuras
+# write a function to evaluate quality:
+# options: increase, decrease, neither
+
+# add stop for quality < 0
+# add stop for quality > 50
