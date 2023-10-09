@@ -108,4 +108,23 @@ test_that("check item name is character", {
 
   expect_error(update_quality(item), "Item name should be")
 
+  item <- list(item("Backstage passes to a TAFKAL80ETC concert",0,0))
+  items <- update_quality(item)
+  expect_type(items[[1]]$name,"character")
 })
+
+test_that("check quality and sell_in are numeric", {
+  item <- list(item(4, 0, 0))
+  items <- update_quality(item)
+
+  expect_type(items[[1]]$sell_in,"numeric")
+  expect_type(items[[1]]$quality,"numeric")
+
+  item <- list(item(4, "a", 0))
+  expect_error(update_quality(item), "Item sell_in should be numeric")
+
+  item <- list(item(4, 0, "b"))
+  expect_error(update_quality(item), "Item quality should be numeric")
+
+})
+

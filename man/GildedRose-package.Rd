@@ -8,6 +8,14 @@
 \description{
 What the package does (one paragraph).
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/SchlossLab/GildedRose}
+  \item Report bugs at \url{https://github.com/SchlossLab/GildedRose/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Allison Mason \email{masonar@umich.edu} (\href{https://orcid.org/0000-0003-1339-1592}{ORCID})
 
