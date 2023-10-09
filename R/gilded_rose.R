@@ -10,6 +10,15 @@ update_quality <- function(items) {
              cli::cli_abort("Item name should be a character.")
            }
 
+           if(!is.double(item$quality)){
+             cli::cli_abort("Item quality should be a double")
+           }
+
+           if(!is.double(item$sell_in)){
+             cli::cli_abort("Item sell_in should be a double")
+           }
+
+
            if (item$name != "Aged Brie" && item$name != "Backstage passes to a TAFKAL80ETC concert") {
              if (item$quality > 0) {
                if (item$name != "Sulfuras, Hand of Ragnaros") {
