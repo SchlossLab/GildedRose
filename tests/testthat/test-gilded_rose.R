@@ -102,3 +102,10 @@ test_that("check Backstage passes to a TAFKAL80ETC concert is 0 after sell in is
   expect_equal(-1 , items[[1]]$sell_in)
   expect_equal(0, items[[1]]$quality)
 })
+
+test_that("check item name is character", {
+  item <- list(item(4, 0, 0))
+
+  expect_error(update_quality(item), "Item name should be")
+
+})

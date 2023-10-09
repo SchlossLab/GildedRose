@@ -6,6 +6,10 @@ update_quality <- function(items) {
   lapply(items,
          function(item) {
 
+           if(!is.character(item$name)) {
+             cli::cli_abort("Item name should be a character.")
+           }
+
            if (item$name != "Aged Brie" && item$name != "Backstage passes to a TAFKAL80ETC concert") {
              if (item$quality > 0) {
                if (item$name != "Sulfuras, Hand of Ragnaros") {
