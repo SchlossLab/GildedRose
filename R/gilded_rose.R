@@ -22,6 +22,10 @@ update_quality <- function(item){
     item$quality <- ifelse(item$quality > 50, 50, item$quality)
     item$sell_in <- item$sell_in - 1
 
+  } else if (item$name == "Sulfuras, Hand of Ragnaros") {
+
+    item$quality <- 80
+
   } else {
 
     if (item$name != "Aged Brie" && item$name != "Backstage passes to a TAFKAL80ETC concert") {
