@@ -1,129 +1,129 @@
 test_that("update_quality aborts with NA", {
 
-  expect_error(update_quality(items = NA), "There was no item supplied")
+  expect_error(update_qualities(items = NA), "There was no item supplied")
 })
 
 test_that("a new item is created", {
-  items <- list( item('foo', 0 ,0))
+  items <- item('foo', 0 ,0)
   items <- update_quality(items)
 
-  expect_equal("foo", items[[1]]$name)
-  expect_equal(-1 , items[[1]]$sell_in)
-  expect_equal(0, items[[1]]$quality)
+  expect_equal("foo", items$name)
+  expect_equal(-1 , items$sell_in)
+  expect_equal(0, items$quality)
 })
 
 test_that("check quality is updated correctly", {
-  items <- list( item('foo', 10 , 10))
+  items <-  item('foo', 10 , 10)
   items <- update_quality(items)
 
-  expect_equal("foo", items[[1]]$name)
-  expect_equal(9 , items[[1]]$sell_in)
-  expect_equal(9, items[[1]]$quality)
+  expect_equal("foo", items$name)
+  expect_equal(9 , items$sell_in)
+  expect_equal(9, items$quality)
 })
 
 
 test_that("check quality decreases by 2 after sell by", {
-  items <- list( item('foo', 0 , 10))
+  items <-  item('foo', 0 , 10)
   items <- update_quality(items)
 
-  expect_equal("foo", items[[1]]$name)
-  expect_equal(-1 , items[[1]]$sell_in)
-  expect_equal(8, items[[1]]$quality)
+  expect_equal("foo", items$name)
+  expect_equal(-1 , items$sell_in)
+  expect_equal(8, items$quality)
 })
 
 test_that("check brie increases in quality", {
-  items <- list( item('Aged Brie', 10 , 10))
+  items <-  item('Aged Brie', 10 , 10)
   items <- update_quality(items)
 
-  expect_equal("Aged Brie", items[[1]]$name)
-  expect_equal(9 , items[[1]]$sell_in)
-  expect_equal(11, items[[1]]$quality)
+  expect_equal("Aged Brie", items$name)
+  expect_equal(9 , items$sell_in)
+  expect_equal(11, items$quality)
 })
 
 test_that("check brie increases in quality +2 after sell by", {
-  items <- list( item('Aged Brie', 0 , 10))
+  items <-  item('Aged Brie', 0 , 10)
   items <- update_quality(items)
 
-  expect_equal("Aged Brie", items[[1]]$name)
-  expect_equal(-1 , items[[1]]$sell_in)
-  expect_equal(12, items[[1]]$quality)
+  expect_equal("Aged Brie", items$name)
+  expect_equal(-1 , items$sell_in)
+  expect_equal(12, items$quality)
 })
 
 test_that("check quality does not increase > 50", {
-  items <- list( item('Aged Brie', 0 , 50))
+  items <-  item('Aged Brie', 0 , 50)
   items <- update_quality(items)
 
-  expect_equal("Aged Brie", items[[1]]$name)
-  expect_equal(-1 , items[[1]]$sell_in)
-  expect_equal(50, items[[1]]$quality)
+  expect_equal("Aged Brie", items$name)
+  expect_equal(-1 , items$sell_in)
+  expect_equal(50, items$quality)
 })
 
 test_that("check Sulfuras, Hand of Ragnaros is always 80", {
-  items <- list( item('Sulfuras, Hand of Ragnaros', 0 , 80))
+  items <-  item('Sulfuras, Hand of Ragnaros', 0 , 80)
   items <- update_quality(items)
 
-  expect_equal("Sulfuras, Hand of Ragnaros", items[[1]]$name)
-  expect_equal(0 , items[[1]]$sell_in)
-  expect_equal(80, items[[1]]$quality)
+  expect_equal("Sulfuras, Hand of Ragnaros", items$name)
+  expect_equal(0 , items$sell_in)
+  expect_equal(80, items$quality)
 })
 
 test_that("check Backstage passes to a TAFKAL80ETC concert increase by 1", {
-  items <- list( item('Backstage passes to a TAFKAL80ETC concert', 15 , 20))
+  items <-  item('Backstage passes to a TAFKAL80ETC concert', 15 , 20)
   items <- update_quality(items)
 
-  expect_equal("Backstage passes to a TAFKAL80ETC concert", items[[1]]$name)
-  expect_equal(14 , items[[1]]$sell_in)
-  expect_equal(21, items[[1]]$quality)
+  expect_equal("Backstage passes to a TAFKAL80ETC concert", items$name)
+  expect_equal(14 , items$sell_in)
+  expect_equal(21, items$quality)
 })
 
 test_that("check Backstage passes to a TAFKAL80ETC concert increase by 2", {
-  items <- list( item('Backstage passes to a TAFKAL80ETC concert', 8 , 20))
+  items <-  item('Backstage passes to a TAFKAL80ETC concert', 8 , 20)
   items <- update_quality(items)
 
-  expect_equal("Backstage passes to a TAFKAL80ETC concert", items[[1]]$name)
-  expect_equal(7 , items[[1]]$sell_in)
-  expect_equal(22, items[[1]]$quality)
+  expect_equal("Backstage passes to a TAFKAL80ETC concert", items$name)
+  expect_equal(7 , items$sell_in)
+  expect_equal(22, items$quality)
 })
 
 test_that("check Backstage passes to a TAFKAL80ETC concert increase by 3", {
-  items <- list( item('Backstage passes to a TAFKAL80ETC concert', 4 , 20))
+  items <-  item('Backstage passes to a TAFKAL80ETC concert', 4 , 20)
   items <- update_quality(items)
 
-  expect_equal("Backstage passes to a TAFKAL80ETC concert", items[[1]]$name)
-  expect_equal(3 , items[[1]]$sell_in)
-  expect_equal(23, items[[1]]$quality)
+  expect_equal("Backstage passes to a TAFKAL80ETC concert", items$name)
+  expect_equal(3 , items$sell_in)
+  expect_equal(23, items$quality)
 })
 
 test_that("check Backstage passes to a TAFKAL80ETC concert is 0 after sell in is reached", {
-  items <- list( item('Backstage passes to a TAFKAL80ETC concert', 0 , 20))
+  items <-  item('Backstage passes to a TAFKAL80ETC concert', 0 , 20)
   items <- update_quality(items)
 
-  expect_equal("Backstage passes to a TAFKAL80ETC concert", items[[1]]$name)
-  expect_equal(-1 , items[[1]]$sell_in)
-  expect_equal(0, items[[1]]$quality)
+  expect_equal("Backstage passes to a TAFKAL80ETC concert", items$name)
+  expect_equal(-1 , items$sell_in)
+  expect_equal(0, items$quality)
 })
 
 test_that("check item name is character", {
-  item <- list(item(4, 0, 0))
+  item <- item(4, 0, 0)
 
   expect_error(update_quality(item), "Item name should be")
 
-  item <- list(item("Backstage passes to a TAFKAL80ETC concert",0,0))
+  item <- item("Backstage passes to a TAFKAL80ETC concert",0,0)
   items <- update_quality(item)
-  expect_type(items[[1]]$name,"character")
+  expect_type(items$name,"character")
 })
 
 test_that("check quality and sell_in are double", {
-  item <- list(item("Backstage", 0, 0))
+  item <- item("Backstage", 0, 0)
   items <- update_quality(item)
 
-  expect_type(items[[1]]$sell_in, "double")
-  expect_type(items[[1]]$quality, "double")
+  expect_type(items$sell_in, "double")
+  expect_type(items$quality, "double")
 
-  item <- list(item("Backstage", sell_in = "a", quality = 0))
+  item <- item("Backstage", sell_in = "a", quality = 0)
   expect_error(update_quality(item), "Item sell_in should be a double")
 
-  item <- list(item("Backstage", 0, "b"))
+  item <- item("Backstage", 0, "b")
   expect_error(update_quality(item), "Item quality should be a double")
 
 })
