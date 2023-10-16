@@ -4,7 +4,7 @@ test_that("update_quality aborts with NA", {
 })
 
 test_that("a new item is created", {
-  items <- item('foo', 0 ,0)
+  items <- item('foo', 0 , 0)
   items <- update_quality(items)
 
   expect_equal("foo", items$name)
@@ -126,5 +126,19 @@ test_that("check quality and sell_in are double", {
   item <- item("Backstage", 0, "b")
   expect_error(update_quality(item), "Item quality should be a double")
 
+})
+
+test_that("check conjured items", {
+  item <- item("Conjured", 10, 10)
+  items <- update_quality(item)
+
+  expect_equal(items$sell_in, 9)
+  expect_equal(items$quality, 8)
+
+  item <- item("Conjured", 10, 0)
+  items <- update_quality(item)
+
+  expect_equal(items$sell_in, 9)
+  expect_equal(items$quality, 0)
 })
 
