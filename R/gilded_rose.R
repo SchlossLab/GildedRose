@@ -23,11 +23,17 @@ update_quality <- function(item){
     item$quality <- ifelse(item$quality < 0, 0, item$quality)
     item$sell_in <- item$sell_in - 1
 
-  } else if (item$name == "Sulfuras, Hand of Ragnaros") {
+    return(item)
+  }
+
+  if (item$name == "Sulfuras, Hand of Ragnaros") {
 
     item$quality <- 80
+    return(item)
 
-  } else if (item$name == "Backstage passes to a TAFKAL80ETC concert") {
+  }
+
+  if (item$name == "Backstage passes to a TAFKAL80ETC concert") {
 
     if (item$sell_in > 10) {
       item$quality <- item$quality + 1
@@ -42,26 +48,30 @@ update_quality <- function(item){
     item$quality <- ifelse(item$quality < 0, 0, item$quality)
     item$sell_in <- item$sell_in - 1
 
-  } else if (item$name == "Conjured") {
+    return(item)
+
+  }
+
+  if (item$name == "Conjured") {
     item$quality <- item$quality - 2
     item$sell_in <- item$sell_in - 1
 
     item$quality <- ifelse(item$quality < 0, 0, item$quality)
+
+    return(item)
+
   }
 
-    else {
-
-    if (item$sell_in > 0) {
-      item$quality <- item$quality - 1
-    } else {
-      item$quality <- item$quality - 2
-    }
-    item$sell_in <- item$sell_in - 1
-
-    item$quality <- ifelse(item$quality < 0, 0, item$quality)
+  if (item$sell_in > 0) {
+    item$quality <- item$quality - 1
+  } else {
+    item$quality <- item$quality - 2
   }
+  item$sell_in <- item$sell_in - 1
 
-  item
+  item$quality <- ifelse(item$quality < 0, 0, item$quality)
+
+  return(item)
 
 }
 
