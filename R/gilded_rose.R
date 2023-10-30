@@ -11,21 +11,6 @@ update_quality <- function(item){
     cli::cli_abort("Item sell_in should be a double")
   }
 
-  if (item$name == "Aged Brie") {
-
-    if(item$sell_in <= 0 ) {
-      item$quality <- item$quality + 2
-    } else {
-      item$quality <- item$quality + 1
-    }
-
-    item$quality <- ifelse(item$quality > 50, 50, item$quality)
-    item$quality <- ifelse(item$quality < 0, 0, item$quality)
-    item$sell_in <- item$sell_in - 1
-
-    return(item)
-  }
-
   if (item$name == "Sulfuras, Hand of Ragnaros") {
 
     item$quality <- 80
@@ -67,7 +52,9 @@ update_quality <- function(item){
 }
 
 update_item <- function(item){
-  UseMethod("update_item",item)
+  UseMethod("update_item", item)
+  UseMethod("update_item", aged_brie)
+
 }
 
 update_item.item <- function(item){
@@ -81,6 +68,22 @@ update_item.item <- function(item){
   item$quality <- ifelse(item$quality < 0, 0, item$quality)
 
   return(item)
+
+}
+
+update_item.aged_brie <- function(item) {
+
+     if(item$sell_in <= 0 ) {
+      item$quality <- item$quality + 2
+    } else {
+      item$quality <- item$quality + 1
+    }
+
+    item$quality <- ifelse(item$quality > 50, 50, item$quality)
+    item$quality <- ifelse(item$quality < 0, 0, item$quality)
+    item$sell_in <- item$sell_in - 1
+
+    return(item)
 
 }
 

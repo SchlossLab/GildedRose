@@ -15,6 +15,12 @@ item <- function(name, sell_in, quality) {
   newItem
 }
 
+aged_brie <- function(sell_in, quality) {
+  newItem <- item(name="Aged Brie", sell_in=sell_in, quality=quality)
+  class(newItem) <- 'aged_brie'
+  newItem
+}
+
 as.character.item <- function(item) {
   paste(item$name, ", ", item$sell_in, ", ", item$quality, sep='')
 }

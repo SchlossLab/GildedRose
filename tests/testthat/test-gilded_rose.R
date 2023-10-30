@@ -32,7 +32,7 @@ test_that("check quality decreases by 2 after sell by", {
 })
 
 test_that("check brie increases in quality", {
-  items <-  item('Aged Brie', 10 , 10)
+  items <-  aged_brie(10 , 10)
   items <- update_quality(items)
 
   expect_equal("Aged Brie", items$name)
@@ -41,7 +41,7 @@ test_that("check brie increases in quality", {
 })
 
 test_that("check brie increases in quality +2 after sell by", {
-  items <-  item('Aged Brie', 0 , 10)
+  items <-  aged_brie(0 , 10)
   items <- update_quality(items)
 
   expect_equal("Aged Brie", items$name)
@@ -50,7 +50,7 @@ test_that("check brie increases in quality +2 after sell by", {
 })
 
 test_that("check quality does not increase > 50", {
-  items <-  item('Aged Brie', 0 , 50)
+  items <-  aged_brie(0 , 50)
   items <- update_quality(items)
 
   expect_equal("Aged Brie", items$name)
