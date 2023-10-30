@@ -103,3 +103,5 @@ update_qualities <- function(items) {
 
 # add stop for quality < 0
 # add stop for quality > 50
+
+# need to create snapshot test with list of items
