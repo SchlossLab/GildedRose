@@ -62,6 +62,15 @@ update_quality <- function(item){
 
   }
 
+  return(update_item(item))
+
+}
+
+update_item <- function(item){
+  UseMethod("update_item",item)
+}
+
+update_item.item <- function(item){
   if (item$sell_in > 0) {
     item$quality <- item$quality - 1
   } else {
