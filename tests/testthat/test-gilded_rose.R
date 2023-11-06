@@ -68,7 +68,7 @@ test_that("check Sulfuras, Hand of Ragnaros is always 80", {
 })
 
 test_that("check Backstage passes to a TAFKAL80ETC concert increase by 1", {
-  items <-  backstagePass(15 , 20)
+  items <-  backstage_pass(15 , 20)
   items <- update_quality(items)
 
   expect_equal("Backstage passes to a TAFKAL80ETC concert", items$name)
@@ -77,7 +77,7 @@ test_that("check Backstage passes to a TAFKAL80ETC concert increase by 1", {
 })
 
 test_that("check Backstage passes to a TAFKAL80ETC concert increase by 2", {
-  items <-  backstagePass(8 , 20)
+  items <-  backstage_pass(8 , 20)
   items <- update_quality(items)
 
   expect_equal("Backstage passes to a TAFKAL80ETC concert", items$name)
@@ -86,7 +86,7 @@ test_that("check Backstage passes to a TAFKAL80ETC concert increase by 2", {
 })
 
 test_that("check Backstage passes to a TAFKAL80ETC concert increase by 3", {
-  items <-  backstagePass(4 , 20)
+  items <-  backstage_pass(4 , 20)
   items <- update_quality(items)
 
   expect_equal("Backstage passes to a TAFKAL80ETC concert", items$name)
@@ -95,7 +95,7 @@ test_that("check Backstage passes to a TAFKAL80ETC concert increase by 3", {
 })
 
 test_that("check Backstage passes to a TAFKAL80ETC concert is 0 after sell in is reached", {
-  items <-  backstagePass(0 , 20)
+  items <-  backstage_pass(0 , 20)
   items <- update_quality(items)
 
   expect_equal("Backstage passes to a TAFKAL80ETC concert", items$name)
@@ -129,13 +129,13 @@ test_that("check quality and sell_in are double", {
 })
 
 test_that("check conjured items", {
-  item <- item("Conjured", 10, 10)
+  item <- conjured(10, 10)
   items <- update_quality(item)
 
   expect_equal(items$sell_in, 9)
   expect_equal(items$quality, 8)
 
-  item <- item("Conjured", 10, 0)
+  item <- conjured(10, 0)
   items <- update_quality(item)
 
   expect_equal(items$sell_in, 9)

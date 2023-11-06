@@ -11,15 +11,6 @@ update_quality <- function(item){
     cli::cli_abort("Item sell_in should be a double")
   }
 
-  if (item$name == "Conjured") {
-    item$quality <- item$quality - 2
-    item$sell_in <- item$sell_in - 1
-
-    item$quality <- ifelse(item$quality < 0, 0, item$quality)
-
-    return(item)
-
-  }
 
   return(update_item(item))
 
@@ -67,7 +58,7 @@ update_item.sulfuras <- function(x) {
 
 }
 
-update_item.backstagePass <- function(x){
+update_item.backstage_pass <- function(x){
 
     if (x$sell_in > 10) {
       x$quality <- x$quality + 1
@@ -81,6 +72,15 @@ update_item.backstagePass <- function(x){
 
     x$quality <- ifelse(x$quality < 0, 0, x$quality)
     x$sell_in <- x$sell_in - 1
+
+    return(x)
+}
+
+update_item.conjured <- function(x) {
+    x$quality <- x$quality - 2
+    x$sell_in <- x$sell_in - 1
+
+    x$quality <- ifelse(x$quality < 0, 0, x$quality)
 
     return(x)
 }

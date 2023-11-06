@@ -27,12 +27,17 @@ sulfuras <- function(sell_in, quality) {
   newItem
 }
 
-backstagePass <- function(sell_in, quality) {
+backstage_pass <- function(sell_in, quality) {
   newItem <- item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=sell_in, quality=quality)
-  class(newItem) <- c('backstagePass', 'item')
+  class(newItem) <- c('backstage_pass', 'item')
   newItem
 }
 
+conjured <- function(sell_in, quality) {
+  newItem <- item(name="Conjured", sell_in=sell_in, quality=quality)
+  class(newItem) <- c('conjured', 'item')
+  newItem
+}
 
 as.character.item <- function(item) {
   paste(item$name, ", ", item$sell_in, ", ", item$quality, sep='')
