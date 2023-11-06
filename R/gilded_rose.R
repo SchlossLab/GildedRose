@@ -11,26 +11,6 @@ update_quality <- function(item){
     cli::cli_abort("Item sell_in should be a double")
   }
 
-
-  if (item$name == "Backstage passes to a TAFKAL80ETC concert") {
-
-    if (item$sell_in > 10) {
-      item$quality <- item$quality + 1
-    } else if (item$sell_in > 5) {
-      item$quality <- item$quality + 2
-    } else if (item$sell_in > 0) {
-      item$quality <- item$quality + 3
-    } else {
-      item$quality <- 0
-    }
-
-    item$quality <- ifelse(item$quality < 0, 0, item$quality)
-    item$sell_in <- item$sell_in - 1
-
-    return(item)
-
-  }
-
   if (item$name == "Conjured") {
     item$quality <- item$quality - 2
     item$sell_in <- item$sell_in - 1
@@ -85,6 +65,24 @@ update_item.sulfuras <- function(x) {
   x$sell_in <- 0
   return(x)
 
+}
+
+update_item.backstagePass <- function(x){
+
+    if (x$sell_in > 10) {
+      x$quality <- x$quality + 1
+    } else if (x$sell_in > 5) {
+      x$quality <- x$quality + 2
+    } else if (x$sell_in > 0) {
+      x$quality <- x$quality + 3
+    } else {
+      x$quality <- 0
+    }
+
+    x$quality <- ifelse(x$quality < 0, 0, x$quality)
+    x$sell_in <- x$sell_in - 1
+
+    return(x)
 }
 
 update_qualities <- function(items) {
