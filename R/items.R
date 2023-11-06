@@ -17,7 +17,13 @@ item <- function(name, sell_in, quality) {
 
 aged_brie <- function(sell_in, quality) {
   newItem <- item(name="Aged Brie", sell_in=sell_in, quality=quality)
-  class(newItem) <- 'aged_brie'
+  class(newItem) <- c('aged_brie', 'item')
+  newItem
+}
+
+sulfuras <- function(sell_in, quality) {
+  newItem <- item(name="Sulfuras, Hand of Ragnaros", sell_in=sell_in, quality=quality)
+  class(newItem) <- c('sulfuras', 'item')
   newItem
 }
 

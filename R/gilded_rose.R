@@ -11,12 +11,6 @@ update_quality <- function(item){
     cli::cli_abort("Item sell_in should be a double")
   }
 
-  if (item$name == "Sulfuras, Hand of Ragnaros") {
-
-    item$quality <- 80
-    return(item)
-
-  }
 
   if (item$name == "Backstage passes to a TAFKAL80ETC concert") {
 
@@ -51,39 +45,45 @@ update_quality <- function(item){
 
 }
 
-update_item <- function(item){
-  UseMethod("update_item", item)
-  UseMethod("update_item", aged_brie)
-
+update_item <- function(x){
+  UseMethod("update_item", x)
 }
 
-update_item.item <- function(item){
-  if (item$sell_in > 0) {
-    item$quality <- item$quality - 1
+update_item.item <- function(x){
+  if (x$sell_in > 0) {
+    x$quality <- x$quality - 1
   } else {
-    item$quality <- item$quality - 2
+    x$quality <- x$quality - 2
   }
-  item$sell_in <- item$sell_in - 1
+  x$sell_in <- x$sell_in - 1
 
-  item$quality <- ifelse(item$quality < 0, 0, item$quality)
+  x$quality <- ifelse(x$quality < 0, 0, x$quality)
 
-  return(item)
+  return(x)
 
 }
 
-update_item.aged_brie <- function(item) {
+update_item.aged_brie <- function(x) {
 
-     if(item$sell_in <= 0 ) {
-      item$quality <- item$quality + 2
+     if(x$sell_in <= 0 ) {
+      x$quality <- x$quality + 2
     } else {
-      item$quality <- item$quality + 1
+      x$quality <- x$quality + 1
     }
 
-    item$quality <- ifelse(item$quality > 50, 50, item$quality)
-    item$quality <- ifelse(item$quality < 0, 0, item$quality)
-    item$sell_in <- item$sell_in - 1
+    x$quality <- ifelse(x$quality > 50, 50, x$quality)
+    x$quality <- ifelse(x$quality < 0, 0, x$quality)
+    x$sell_in <- x$sell_in - 1
 
-    return(item)
+    return(x)
+
+}
+
+update_item.sulfuras <- function(x) {
+
+  x$quality <- 80
+  x$sell_in <- 0
+  return(x)
 
 }
 

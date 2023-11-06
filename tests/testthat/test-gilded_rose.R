@@ -59,7 +59,7 @@ test_that("check quality does not increase > 50", {
 })
 
 test_that("check Sulfuras, Hand of Ragnaros is always 80", {
-  items <-  item('Sulfuras, Hand of Ragnaros', 0 , 80)
+  items <-  sulfuras(0 , 80)
   items <- update_quality(items)
 
   expect_equal("Sulfuras, Hand of Ragnaros", items$name)
