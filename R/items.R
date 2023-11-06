@@ -10,6 +10,18 @@
 #' @examples
 #' new_item <- item("laptop", 0, 0)
 item <- function(name, sell_in, quality) {
+  if(!is.character(name)) {
+    cli::cli_abort("Item name should be a character.")
+  }
+
+  if(!is.double(quality)){
+    cli::cli_abort("Item quality should be a double")
+  }
+
+  if(!is.double(sell_in)){
+    cli::cli_abort("Item sell_in should be a double")
+  }
+
   newItem <- list(name=name, sell_in=sell_in, quality=quality)
   class(newItem) <- 'item'
   newItem

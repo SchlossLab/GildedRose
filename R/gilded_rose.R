@@ -1,21 +1,3 @@
-update_quality <- function(item){
-  if(!is.character(item$name)) {
-    cli::cli_abort("Item name should be a character.")
-  }
-
-  if(!is.double(item$quality)){
-    cli::cli_abort("Item quality should be a double")
-  }
-
-  if(!is.double(item$sell_in)){
-    cli::cli_abort("Item sell_in should be a double")
-  }
-
-
-  return(update_item(item))
-
-}
-
 update_item <- function(x){
   UseMethod("update_item", x)
 }
@@ -91,7 +73,7 @@ update_qualities <- function(items) {
   }
 
   lapply(items,
-         update_quality
+         update_item
   )
 }
 
