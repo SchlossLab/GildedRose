@@ -72,9 +72,11 @@ update_qualities <- function(items) {
     cli::cli_abort("There was no item supplied, check item().")
   }
 
-  lapply(items,
+  lapply(items[1],
          update_item
   )
+  # update_item(items[[1]])
+
 }
 
 # there are no stops/returns/skips, perhaps add one for Sulfuras
