@@ -22,7 +22,7 @@ test_that("check item name is character", {
 
 test_that("check quality and sell_in are double", {
   item <- backstage_pass(0, 0)
-  items <- update_quality(item)
+  items <- update_item(item)
 
   expect_type(items$sell_in, "double")
   expect_type(items$quality, "double")

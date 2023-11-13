@@ -117,3 +117,9 @@ test_that("check conjured items", {
   expect_equal(items$quality, 0)
 })
 
+test_that("Workflow with list of items works as expected", {
+
+  source("../texttest_fixture.R")
+  expect_snapshot(cat(gilded_rose_fixture()))
+
+})

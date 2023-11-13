@@ -68,7 +68,7 @@ update_item.conjured <- function(x) {
 }
 
 update_qualities <- function(items) {
-  if(is.na(items)) {
+  if(is.na(items[1])) {
     cli::cli_abort("There was no item supplied, check item().")
   }
 
