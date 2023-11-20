@@ -51,10 +51,13 @@ conjured <- function(sell_in, quality) {
   newItem
 }
 
+
+#' @export
 as.character.item <- function(item) {
   paste(item$name, ", ", item$sell_in, ", ", item$quality, sep='')
 }
 
+#' @export
 print.item <- function(item) {
   print.default(as.character(item))
 }
