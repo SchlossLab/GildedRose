@@ -46,7 +46,7 @@ backstage_pass <- function(sell_in, quality) {
 }
 
 conjured <- function(sell_in, quality) {
-  newItem <- item(name="Conjured", sell_in=sell_in, quality=quality)
+  newItem <- item(name="Conjured Mana Cake", sell_in=sell_in, quality=quality)
   class(newItem) <- c('conjured', 'item')
   newItem
 }

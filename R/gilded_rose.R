@@ -40,13 +40,15 @@ update_item.aged_brie <- function(x) {
 update_item.sulfuras <- function(x) {
 
   x$quality <- 80
-  x$sell_in <- 0
+  x$sell_in <- x$sell_in
   return(x)
 
 }
 
 #'@export
 update_item.backstage_pass <- function(x){
+
+    #x$sell_in <- x$sell_in - 1
 
     if (x$sell_in > 10) {
       x$quality <- x$quality + 1
@@ -58,7 +60,7 @@ update_item.backstage_pass <- function(x){
       x$quality <- 0
     }
 
-    x$quality <- ifelse(x$quality < 0, 0, x$quality)
+    x$quality <- ifelse(x$quality > 50, 50, x$quality)
     x$sell_in <- x$sell_in - 1
 
     return(x)
