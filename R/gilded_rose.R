@@ -1,7 +1,9 @@
+#'@export
 update_item <- function(x){
   UseMethod("update_item", x)
 }
 
+#'@export
 update_item.item <- function(x){
   if (x$sell_in > 0) {
     x$quality <- x$quality - 1
@@ -16,6 +18,7 @@ update_item.item <- function(x){
 
 }
 
+#'@export
 update_item.aged_brie <- function(x) {
 
      if(x$sell_in <= 0 ) {
@@ -32,6 +35,8 @@ update_item.aged_brie <- function(x) {
 
 }
 
+
+#'@export
 update_item.sulfuras <- function(x) {
 
   x$quality <- 80
@@ -40,6 +45,7 @@ update_item.sulfuras <- function(x) {
 
 }
 
+#'@export
 update_item.backstage_pass <- function(x){
 
     if (x$sell_in > 10) {
@@ -58,6 +64,7 @@ update_item.backstage_pass <- function(x){
     return(x)
 }
 
+#'@export
 update_item.conjured <- function(x) {
     x$quality <- x$quality - 2
     x$sell_in <- x$sell_in - 1
@@ -72,10 +79,9 @@ update_qualities <- function(items) {
     cli::cli_abort("There was no item supplied, check item().")
   }
 
-  lapply(items[1],
+  lapply(items,
          update_item
   )
-  # update_item(items[[1]])
 
 }
 

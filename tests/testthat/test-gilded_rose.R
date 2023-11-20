@@ -9,7 +9,8 @@ test_that("update_qualities works with a list of items", {
                 item('Elixir of the Mongoose', 5, 7))
 
   update <- update_qualities(items)
-  expect_s3_class(update, "item")
+  expect_type(update, "list")
+  expect_s3_class(update[[1]], "item")
 })
 
 test_that("a new item is created", {
